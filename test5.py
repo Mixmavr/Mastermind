@@ -169,11 +169,7 @@ class Mastermind(tk.Tk):
         for num in range(len(guess)):
             if guess[num] in code:
                 Mastermind.feedback_list.append("White")
-            #else:
                 
-                #Mastermind.feedback_list.append("White")
-                #for col in guess:
-                    #print(col)
         
         print("\nMastermind.feedback_list :", Mastermind.feedback_list)
         print("\nfinal_guess_list :", guess)
