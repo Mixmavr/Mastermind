@@ -6,33 +6,6 @@ from tkinter import messagebox
 
 code = ["Blue", "Violet"]
 colors = ['bl', 'ye', 'or', 'vl']
-creationOfCbanswer_list = [410, 370, 330, 290, 250, 210, 170, 130, 90, 50]
-counter = 0
-
-#def mainMenu():
-    #d = Mastermind()
-    #d.mainloop()
-    #printingcode(self, a)
-    #print(d.guesses_list)
-    
-    #Mastermind().mainloop()
-    #guesses_list = Mastermind.codeBreaker(self)
-    #users_input_1 = inputList(self)
-    #guesses_list = Mastermind.codeBreaker(users_input_1)
-    #Mastermind.codeprinting(guesses_list)
-    #Mastermind.codeprinting(Mastermind.codeBreaker(self))
-
-#class MainControler():
-    #def __init__(self):
-        #self.run()
-    
-    #def run(self):
-        #numOfGuesses = 0
-        #Mastermind().mainloop()
-        #guesses_list = Mastermind.codeBreaker(self)
-        #Mastermind.codeprinting(guesses_list)
-        #Mastermind.codeprinting(Mastermind.codeBreaker(self))
-
 creationOfCbanswer_list = [410, 370, 330, 290, 250, 210, 170, 130, 90, 50]       
         
 class Mastermind(tk.Tk):
@@ -43,16 +16,15 @@ class Mastermind(tk.Tk):
         Mastermind.feedback_list = []
         # Creation of main window
         super(Mastermind, self).__init__()
-        #self.createMenuBar()
         self.geometry("550x590")
         self.title('Mastermind game')
-        #self.configure(background = "blue")
 
         # color information
         self.label_info_head = Label(self, text = "Color table info.", font = ("Calibri", 12))
         self.label_info_head.place(x = 20, y = 530)
         self.label_info = Label(self, text = "bl = Blue,   ye = Yellow,   or = Orange,   vl = Violet", font = ("Calibri", 12))
         self.label_info.place(x = 20, y = 550)
+        
         # menubar creation
         self.createMenuBar()
         
@@ -207,39 +179,8 @@ class Mastermind(tk.Tk):
         print("\nfinal_guess_list :", guess)
         print("\ncode_list :", code)
         return Mastermind.feedback_list
-        
-        #for num in range(counter):
-            
-            #counter += 1
-        #else: print("Wrong.")
-        
-        
-    #def codeBreakersAnswerLabels(self, listtocopy):
-        #Mastermind.counter =+ 1
-        #guess = list(listtocopy)
-        #self.label = Label(self, text = self.guess[0])
-        #self.config(font = ("Calibri", 13))
-        #self.place(x = 20, y = 100)
-        
-        #pass
-
-    #def guessesPrint(self, guessesForPrint):
-        #guess = list(guessesForPrint)
-        #print(guessesForPrint)
-        #self.label = Label(self, text = guessesForPrint)
-        #self.label.config(font = ("Calibri", 13))
-        #self.label.place(x = 0, y = 0)
-        #pass
-
-    #def codeprinting(self, x):
-        #a = list(x)
-        #print(x)
-        #pass
-        
-    #def codemakersFeedback(self, guessesCopy):
-        #pass    
-        
-
+ 
+   
     def about(self):
         messagebox.showinfo(title = "About", message = '''Mastermind game.
 A creation of Mavrogiannis Michail
@@ -256,7 +197,4 @@ Good Luck and enjoy...''')
         
 if __name__ == "__main__":
     Mastermind()
-    #MainControler() 
-
-    #mainMenu()
-    #Mastermind().mainloop()
+   
