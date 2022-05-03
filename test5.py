@@ -4,12 +4,21 @@ import tkinter as tk
 from tkinter import Menu
 from tkinter import messagebox
 
-code = ["Blue", "Yellow"]
-colors = ['b', 'y', 'o']
+code = ["Blue", "Violet"]
+colors = ['bl', 'ye', 'or', 'vl']
+creationOfCbanswer_list = [410, 370, 330, 290, 250, 210, 170, 130, 90, 50]
+counter = 0
 
 #def mainMenu():
+    #d = Mastermind()
+    #d.mainloop()
+    #printingcode(self, a)
+    #print(d.guesses_list)
+    
     #Mastermind().mainloop()
     #guesses_list = Mastermind.codeBreaker(self)
+    #users_input_1 = inputList(self)
+    #guesses_list = Mastermind.codeBreaker(users_input_1)
     #Mastermind.codeprinting(guesses_list)
     #Mastermind.codeprinting(Mastermind.codeBreaker(self))
 
@@ -23,43 +32,92 @@ colors = ['b', 'y', 'o']
         #guesses_list = Mastermind.codeBreaker(self)
         #Mastermind.codeprinting(guesses_list)
         #Mastermind.codeprinting(Mastermind.codeBreaker(self))
-        
+
+creationOfCbanswer_list = [410, 370, 330, 290, 250, 210, 170, 130, 90, 50]       
         
 class Mastermind(tk.Tk):
-    #guesses_list = []
-    #counter = 0
+    #Mastermind.guesses_list = []
+    counter = 0
     def __init__(self):
+        Mastermind.guesses_list = []
+        Mastermind.feedback_list = []
         # Creation of main window
         super(Mastermind, self).__init__()
-        self.createMenuBar()
-        self.geometry("500x500")
+        #self.createMenuBar()
+        self.geometry("550x590")
         self.title('Mastermind game')
         #self.configure(background = "blue")
 
-        # codebreaker's answer labels
+        # color information
+        self.label_info_head = Label(self, text = "Color table info.", font = ("Calibri", 12))
+        self.label_info_head.place(x = 20, y = 530)
+        self.label_info = Label(self, text = "bl = Blue,   ye = Yellow,   or = Orange,   vl = Violet", font = ("Calibri", 12))
+        self.label_info.place(x = 20, y = 550)
+        # menubar creation
+        self.createMenuBar()
         
+        # codebreaker's answer labels
+        self.creationOfCbanswernum()
+
+        # codebreaker's answer feedback
+        self.creationOfCbFeedback()
 
         # Creation of Labelframe
-        self.labelFrame = ttk.LabelFrame(self, text = "Codebraker guesses", width = 490,height = 383)
-        self.labelFrame.place(x = 5, y = 0)
+        #self.labelFrame = ttk.LabelFrame(self, text = "Codebraker guesses", width = 490,height = 383)
+        #self.labelFrame.place(x = 10, y = 0)
 
         # Creation of guess button
-        self.button = ttk.Button(self, text = "Guess", command = self.codeBreaker)
+        self.button = ttk.Button(self, text = "Guess", command = lambda:self.answerAndFeedbackCbLabels(self.printingcode(copiedguess = self.codeBreaker()), code = self.codeBreaker()))
+        #self.button = ttk.Button(self, text = "Guess", command = self.codeBreaker)
         self.config(width = 8, height = 2)
-        self.button.place(x = 300, y = 430)
+        self.button.place(x = 300, y = 480)
 
         # Creation of textboxes 1 & 2
+        self.label_cb_ins_box_head = Label(self, text = "Codebreaker's input.", font = ("Calibri", 13))
+        self.label_cb_ins_box_head.place(x = 20, y = 455)
         self.textbox_1 = ttk.Entry(self)
-        self.textbox_1.place(x = 20, y = 430)
-        self.textbox_1.config(width = 12, font = ("Calibri", 13))
+        self.textbox_1.place(x = 20, y = 480)
+        self.textbox_1.config(width = 12, font = ("Calibri", 12))
         #self.textbox_1.focus()
 
         self.textbox_2 = ttk.Entry(self)
-        self.textbox_2.place(x = 150, y = 430)
-        self.textbox_2.config(width = 12, font = ("Calibri", 13))
+        self.textbox_2.place(x = 150, y = 480)
+        self.textbox_2.config(width = 12, font = ("Calibri", 12))
         #self.textbox_2.focus()
+
+       
+    def creationOfCbanswernum(self):
+        self.label_head_cb = Label(self, text = "Codebreaker's answers.", font = ("Calibri", 13))
+        self.label_head_cb.place(x = 8, y = 10)
+        for _ in range(10):
+            #self.label_cb = Label(self, text = str(_ + 1) + "  ----")
+            self.label_cb = Label(self, text = str(_ + 1), font = ("Calibri", 12))
+            self.label_cb.place(x = 8, y = creationOfCbanswer_list[_])
+
+    def answerAndFeedbackCbLabels(self, text, code):
+        if Mastermind.counter < 10:
+            text = list(Mastermind.feedback_list)
+            code = list(Mastermind.guesses_list)
+            print("text", text)
+            print("code", code)
+            self.label_feedback = Label(self, text = text, background = "white", font = ("Calibri", 12), width = 24)
+            self.label_feedback.place(x = 320, y = creationOfCbanswer_list[Mastermind.counter])
+            self.label_answer_cb = Label(self, text = code, background = "light blue", font = ("Calibri", 12), width = 24)
+            self.label_answer_cb.place(x = 30, y = creationOfCbanswer_list[Mastermind.counter])
+            Mastermind.counter += 1
+        else: print("End of the game")
         
-        
+    def creationOfCbFeedback(self):
+        self.label_feedback_head = Label(self, text = "Codebreaker's feedback.", font = ("Calibri", 13))
+        self.label_feedback_head.place(x = 300, y = 10)
+        for __ in range(10):
+            #self.label_feedback = Label(self, text = "feedback " + str(__ + 1))
+            self.label_feedback = Label(self, text = str(__ + 1), font = ("Calibri", 12))
+            self.label_feedback.place(x = 300, y = creationOfCbanswer_list[__])
+        #self.label_2 = Label(self, text = "2")
+        #self.label_2.place(x = 20, y = 300)
+            #self.label.grid(column = 0, row = 0)
+            
     def createMenuBar(self):
         menubar = Menu(self)
         self.config(menu = menubar)
@@ -78,40 +136,83 @@ class Mastermind(tk.Tk):
         helpmenu.add_command(label = "About...", command = self.about)
         menubar.add_cascade(label = "Help", menu = helpmenu)
 
+    #def inputList(self):
+        #users_input_1 = (self.textbox_1.get()).split("-")
+        #return users_input_1
+
     def codeBreaker(self):
-        self.guesses_list = []
-        self.guesses_list.clear() # Clears the list
+        Mastermind.guesses_list.clear()
+        #self.guesses_list = []
+        #self.guesses_list.clear() # Clears the list
         
         # textbox_1 ckeck
-        users_input_1 = self.textbox_1.get()
+        users_input_1 = (self.textbox_1.get())
         if users_input_1 in colors:
-            
-            if users_input_1 == "b":
-                self.guesses_list.append("Blue")
-                #return "Blue"
-            elif users_input_1 == "y": self.guesses_list.append("Yellow")
-                
-            elif users_input_1 == "o": self.guesses_list.append("Orange")
+            if users_input_1 == "bl": Mastermind.guesses_list.append("Blue")
+            elif users_input_1 == "ye": Mastermind.guesses_list.append("Yellow")   
+            elif users_input_1 == "or": Mastermind.guesses_list.append("Orange")
+            elif users_input_1 == "vl": Mastermind.guesses_list.append("Violet")
+        #else:
+            #print("Wrong color. Try again.")
+            #break
+        #return "Wrong"
 
-        
+    
         # textbox_2 ckeck
         users_input_2 = self.textbox_2.get()
         if users_input_2 in colors:
+            if users_input_2 == "bl": Mastermind.guesses_list.append("Blue")   
+            elif users_input_2 == "ye": Mastermind.guesses_list.append("Yellow")
+            elif users_input_2 == "or": Mastermind.guesses_list.append("Orange")
+            elif users_input_2 == "vl": Mastermind.guesses_list.append("Violet")
+        #else:
+            #print("Wrong color. Try again.")
+            #break
+        #return "Wrong"
 
-            if users_input_2 == "b": self.guesses_list.append("Blue")
-                
-            if users_input_2 == "y":
-                self.guesses_list.append("Yellow")
-                #return "Yellow"
-            elif users_input_2 == "o": self.guesses_list.append("Orange")
-                
-        if len(self.guesses_list) == 0: return None
+        #if len(Mastermind.guesses_list) == 0: return None
 
-        elif len(self.guesses_list) < 2:
-            self.guesses_list.clear()
-            return None
-        #else: return print(self.guesses_list)
-        else:return print(self.guesses_list)
+        #elif len(Mastermind.guesses_list) < 2:
+            #Mastermind.guesses_list.clear()
+            #return None
+        #else: return print(Mastermind.guesses_list)
+        return Mastermind.guesses_list
+
+    def printingcode(self, copiedguess):
+        #guess = copiedguess
+        #if guess == "Wrong":
+            #print("Wrong")
+
+        #else:
+        Mastermind.feedback_list.clear()
+        guess = list(copiedguess)
+        print("--" * 10)
+        print("\noriginal_guess_list :", guess)
+        for num in range(len(guess)):
+            if guess[num] == code[num]:
+                guess[num] = 1
+                code[num] = 2
+                Mastermind.feedback_list.append("Red")
+
+        for num in range(len(guess)):
+            if guess[num] in code:
+                Mastermind.feedback_list.append("White")
+            #else:
+                
+                #Mastermind.feedback_list.append("White")
+                #for col in guess:
+                    #print(col)
+        
+        print("\nMastermind.feedback_list :", Mastermind.feedback_list)
+        print("\nfinal_guess_list :", guess)
+        print("\ncode_list :", code)
+        return Mastermind.feedback_list
+        
+        #for num in range(counter):
+            
+            #counter += 1
+        #else: print("Wrong.")
+        
         
     #def codeBreakersAnswerLabels(self, listtocopy):
         #Mastermind.counter =+ 1
@@ -130,13 +231,13 @@ class Mastermind(tk.Tk):
         #self.label.place(x = 0, y = 0)
         #pass
 
-    def codeprinting(self, x):
-        a = list(x)
-        print(x)
-        pass
+    #def codeprinting(self, x):
+        #a = list(x)
+        #print(x)
+        #pass
         
-    def codemakersFeedback(self, guessesCopy):
-        pass    
+    #def codemakersFeedback(self, guessesCopy):
+        #pass    
         
 
     def about(self):
@@ -154,8 +255,8 @@ Good Luck and enjoy...''')
     
         
 if __name__ == "__main__":
-    #Mastermind()
+    Mastermind()
     #MainControler() 
 
     #mainMenu()
-    Mastermind().mainloop()
+    #Mastermind().mainloop()
