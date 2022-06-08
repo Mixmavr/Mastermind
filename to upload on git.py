@@ -11,210 +11,155 @@ from random import sample
 ##o = 'Orange'
 ##g = 'Green'
 ##v = 'Violet'
-##p = 'Pink'
-#available_colors = ['Blue', 'Yellow', 'Orange', 'Green', 'Violet', 'Pink']
-#shorted_colors = ['b', 'y', 'o', 'v', 'g', 'p']
+##l = 'Lime'
+
+pc_codebreaker_list = ['Blue', 'Yellow', 'Orange', 'Green']
 
 
-#duplicate_colors_in_code = True
-#duplicate_colors_in_code = False
 
-#code_length = 4
+class FirstsSettingsWindow(tk.Tk):
 
-creationOfCbanswer_list = [410, 370, 330, 290, 250, 210, 170, 130, 90, 50]
-
-
-##def mainmenu():
-##    mastermind = Mastermind()
-##    mastermindscode = MastermindsCode()
-    #d = Mastermind()
-    #d.mainloop()
-    #printingcode(self, a)
-    #print(d.guesses_list)
+    def __init__(self):
+        super().__init__()
+        #super(FirstsSettingsWindow, self).__init__()
+        self.selected_settings = [0, 0, 0, 0, 0]
     
-    #Mastermind().mainloop()
-    #guesses_list = Mastermind.codeBreaker(self)
-    #users_input_1 = inputList(self)
-    #guesses_list = Mastermind.codeBreaker(users_input_1)
-    #Mastermind.codeprinting(guesses_list)
-    #Mastermind.codeprinting(Mastermind.codeBreaker(self))
+        self.geometry("390x380")
+        self.title("Mastermind Settings")
 
-##class MainControler():
-##    def __init__(self):
-##        self.run()
-##        
-##    
-##    def run(self):
-##        #generalselections = Generalselections()
-##        #mastermind = Mastermind()
-##        #m_1 = MastermindsCode()
-##        #mastermind = Mastermind()
-##        
-##        #m_1 = MastermindsCode()
-##        #mastermind.mainloop()
-##        pass
+        
 
 
 
-       
-##class Generalselections(tk.Tk):
-##    def __init__(self):
-##        super(Generalselections, self).__init__()
-##        self.geometry("550x590")
-##        self.title('Mastermind game')
-##        self.configure(background = "PeachPuff3")
-##        self.startbutton = ttk.Button(self, text = "Start", command = self.runTheMainGameWindow())
-##        self.startbutton.place(x = 40, y = 100)
-##
-##
-##    def runTheMainGameWindow(self):
-##        Mastermind()
-##        pass
-    
-    #def firstSelectionsWindow(self):
+            # Creation of start button and label
+        self.start_button = ttk.Button(self, text = "Start the game", command = self.opengamewindow)
+        self.start_button.place(x = 30, y = 335)
+        self.good_luck_label = ttk.Label(self, text = "and Good Luck !!!")
+        self.good_luck_label.place(x = 118, y = 338)
 
+        
+            # Call of menubar in settings window
+        self.settingsWindowCreationMenuBar()
 
-##class FirstsSettingsWindow(tk.Tk):
-##    def __init__(self):
-##        super().__init__()
+            # Windows selections header
+        self.general_header = ttk.Label(self, text = "Settings of the game.")
+        self.general_header.place(x = 10, y = 10)
+        self.general_header.config(font = ("Calibri", 15))
 
-
-FirstsSettingsWindow = tk.Tk()
-
-FirstsSettingsWindow.geometry("390x380")
-FirstsSettingsWindow.title("Mastermind Settings")
-
-##        # Call of radio buttons method
-##        self.creationOfRadioButtons()
-
-        # Creation of start button and label
-start_button = ttk.Button(FirstsSettingsWindow, text = "Start the game", command = lambda:opengamewindow())
-start_button.place(x = 30, y = 335)
-good_luck_label = ttk.Label(FirstsSettingsWindow, text = "and Good Luck !!!")
-good_luck_label.place(x = 118, y = 338)
-
-    
-        # Call of menubar in settings window
-#settingsWindowCreationMenuBar()
-
-        # Windows selections header
-general_header = ttk.Label(FirstsSettingsWindow, text = "First settings of the game.")
-general_header.place(x = 10, y = 10)
-general_header.config(font = ("Calibri", 15))
-
-        # User's role in the game
-role_header = ttk.Label(FirstsSettingsWindow, text = '''1. Choose your role in the game write in the box
+            # User's role in the game
+        self.role_header = ttk.Label(self, text = '''1. Choose your role in the game write in the box
     'cb' for Codebreaker or 'cm' for Codemaker.''')
-role_header.place(x = 10, y = 50)
-role_textbox = ttk.Entry(FirstsSettingsWindow, width = 10)
-role_textbox.place(x = 330, y = 57)
-role_textbox.config(width = 5, font = ("Calibri", 12))
+        self.role_header.place(x = 10, y = 50)
+        self.role_textbox = ttk.Entry(self, width = 10)
+        self.role_textbox.place(x = 330, y = 57)
+        self.role_textbox.config(width = 5, font = ("Calibri", 12))
 
-        # Total number of colors settings
-num_of_colors_header = ttk.Label(FirstsSettingsWindow, text = "2. Choose the number of colors in game, '5' or '6'.")
-num_of_colors_header.place(x = 10, y = 107)
-num_of_colors_textbox = ttk.Entry(FirstsSettingsWindow, width = 10)
-num_of_colors_textbox.place(x = 330, y = 105)
-num_of_colors_textbox.config(width = 5, font = ("Calibri", 12))
-
-
-        # Code length settings
-code_length_header = ttk.Label(FirstsSettingsWindow, text = "3. Choose the code length, '3' or '4'.")
-code_length_header.place(x = 10, y = 157)
-code_length_textbox = ttk.Entry(FirstsSettingsWindow, width = 10)
-code_length_textbox.place(x = 330, y = 155)
-code_length_textbox.config(width = 5, font = ("Calibri", 12))
+            # Total number of colors settings
+        self.num_of_colors_header = ttk.Label(self, text = "2. Choose the number of colors in game, '5' or '6'.")
+        self.num_of_colors_header.place(x = 10, y = 107)
+        self.num_of_colors_textbox = ttk.Entry(self, width = 10)
+        self.num_of_colors_textbox.place(x = 330, y = 105)
+        self.num_of_colors_textbox.config(width = 5, font = ("Calibri", 12))
 
 
-        # Duplication in random codemaker's code
-duplicate_colors_in_code_header = ttk.Label(FirstsSettingsWindow, text = "4. Choose duplicated colors in codemaker's code, 'y' or 'n'.")
-duplicate_colors_in_code_header.place(x = 10, y = 207)
-duplicate_colors_in_code_textbox = ttk.Entry(FirstsSettingsWindow, width = 10)
-duplicate_colors_in_code_textbox.place(x = 330, y = 205)
-duplicate_colors_in_code_textbox.config(width = 5, font = ("Calibri", 12))
+            # Code length settings
+        self.code_length_header = ttk.Label(self, text = "3. Choose the code length, '3' or '4'.")
+        self.code_length_header.place(x = 10, y = 157)
+        self.code_length_textbox = ttk.Entry(self, width = 10)
+        self.code_length_textbox.place(x = 330, y = 155)
+        self.code_length_textbox.config(width = 5, font = ("Calibri", 12))
 
 
-        # Name of user player
-users_name_header = ttk.Label(FirstsSettingsWindow, text = "5. Insert your name.")
-users_name_header.place(x = 10, y = 257)
-users_name_textbox = ttk.Entry(FirstsSettingsWindow, width = 10)
-users_name_textbox.place(x = 290, y = 255)
-users_name_textbox.config(width = 10, font = ("Calibri", 12))    
-
-    
-    
-def opengamewindow():
-    #entered_value = int(settings_textbox.get())
-    #print(entered_value)
-    #print(type(entered_value))
-    #entered_value = int(settings_textbox.get())
-    #passtheentryvalue = passtheentryvalue(entryvalue = settings_textbox)
-    #passtheentryvalue = 
-    
-    selected_settings = [0, 0, 0, 0, 0]
-    selected_number_of_colors = 0
-    selected_code_length = 0
-    selected_duplicate_colors = 0
-    #print("1", type(selected_number_of_colors))
-    if role_textbox.get() in ["cm"]:
-        selected_role = "cm"
-        selected_settings[0] = selected_role
-    elif role_textbox.get() in ["cb"]:
-        selected_role = "cb"
-        selected_settings[0] = selected_role
-        
-    if num_of_colors_textbox.get() in ["5"]:
-        #a = int(settings_textbox)
-        selected_number_of_colors = 5
-        selected_settings[1] = selected_number_of_colors
-        #print("2", type(selected_number_of_colors))
-        #mastermind = Mastermind(number_of_colors = selected_number_of_colors)
-    elif num_of_colors_textbox.get() in ["6"]:
-        #a = int(settings_textbox)
-        selected_number_of_colors = 6
-        selected_settings[1] = selected_number_of_colors
-        #print("3", type(selected_number_of_colors))
-        #mastermind = Mastermind(number_of_colors = selected_number_of_colors)
-
-    if code_length_textbox.get() in ["3"]:
-        selected_code_length = 3
-        selected_settings[2] = selected_code_length
-        
-    elif code_length_textbox.get() in ["4"]:
-        selected_code_length = 4
-        selected_settings[2] = selected_code_length
-
-    if duplicate_colors_in_code_textbox.get() in ["y"]:
-        selected_duplicate_colors = "True" # It means True
-        selected_settings[3] = selected_duplicate_colors
-    elif duplicate_colors_in_code_textbox.get() in ["n"]:
-        selected_duplicate_colors = "False" # It means False
-        selected_settings[3] = selected_duplicate_colors
-
-    if len(users_name_textbox.get()) > 0:
-        inserted_users_name = users_name_textbox.get()
-        selected_settings[4] = inserted_users_name
-        print("user's name :", selected_settings[4])
-    elif not users_name_textbox.get():
-        selected_settings[4] = 0
-    
-    print("\n\t\tselected_settings", selected_settings)
-
-    if 0 not in selected_settings:
-        #mastermind = Mastermind(number_of_colors = selected_settings[0], code_length = selected_settings[1])
-        mastermind = Mastermind(users_role_in_game = selected_settings[0], number_of_colors = selected_settings[1],
-                   code_length = selected_settings[2],
-                   duplicate_colors_in_code = selected_settings[3])
-        mastermind.grab_set()
-    else:print("Error Input")
-    #else: Mastermind.errorInputWarning
-        #mastermind = Mastermind()
+            # Duplication in random codemaker's code
+        self.duplicate_colors_in_code_header = ttk.Label(self, text = "4. Choose duplicate colors in codemaker's code, 'y' or 'n'.")
+        self.duplicate_colors_in_code_header.place(x = 10, y = 207)
+        self.duplicate_colors_in_code_textbox = ttk.Entry(self, width = 10)
+        self.duplicate_colors_in_code_textbox.place(x = 330, y = 205)
+        self.duplicate_colors_in_code_textbox.config(width = 5, font = ("Calibri", 12))
 
 
-
+            # Name of user player
+        self.users_name_header = ttk.Label(self, text = "5. Insert your name.")
+        self.users_name_header.place(x = 10, y = 257)
+        self.users_name_textbox = ttk.Entry(self, width = 10)
+        self.users_name_textbox.place(x = 290, y = 255)
+        self.users_name_textbox.config(width = 10, font = ("Calibri", 12))    
 
         
-class HelpAndAbout():
+        
+    def opengamewindow(self):
+        
+        self.selected_number_of_colors = 0
+        self.selected_code_length = 0
+        self.selected_duplicate_colors = 0
+        if self.role_textbox.get() in ["cm"]:
+            self.selected_role = "cm"
+            self.selected_settings[0] = self.selected_role
+        elif self.role_textbox.get() in ["cb"]:
+            self.selected_role = "cb"
+            self.selected_settings[0] = self.selected_role
+                
+        if self.num_of_colors_textbox.get() in ["5"]:
+            self.selected_number_of_colors = 5
+            self.selected_settings[1] = self.selected_number_of_colors
+        elif self.num_of_colors_textbox.get() in ["6"]:
+            self.selected_number_of_colors = 6
+            self.selected_settings[1] = self.selected_number_of_colors
+
+        if self.code_length_textbox.get() in ["3"]:
+            self.selected_code_length = 3
+            self.selected_settings[2] = self.selected_code_length
+                
+        elif self.code_length_textbox.get() in ["4"]:
+            self.selected_code_length = 4
+            self.selected_settings[2] = self.selected_code_length
+
+        if self.duplicate_colors_in_code_textbox.get() in ["y"]:
+            self.selected_duplicate_colors = "True" # It means True
+            self.selected_settings[3] = self.selected_duplicate_colors
+        elif self.duplicate_colors_in_code_textbox.get() in ["n"]:
+            self.selected_duplicate_colors = "False" # It means False
+            self.selected_settings[3] = self.selected_duplicate_colors
+
+        if len(self.users_name_textbox.get()) > 0:
+            self.inserted_users_name = self.users_name_textbox.get()
+            self.selected_settings[4] = self.inserted_users_name
+            print("user's name :", self.selected_settings[4])
+        elif not self.users_name_textbox.get():
+            self.selected_settings[4] = 0
+            
+        #print("\n\t\tselected_settings", self.selected_settings)
+
+        if 0 not in self.selected_settings:
+            mastermind = Mastermind(users_role_in_game = self.selected_settings[0], number_of_colors = self.selected_settings[1],
+                           code_length = self.selected_settings[2],
+                        duplicate_colors_in_code = self.selected_settings[3], username = self.selected_settings[4])
+            mastermind.grab_set()
+        else:
+            HelpAboutWarnings.errorInputWarning(self)
+
+
+    def settingsWindowCreationMenuBar(self):
+        menubar = Menu(self)
+        self.config(menu = menubar)
+        file_menu = Menu(menubar, tearoff = 0)
+
+            # Creation of file menu
+        menubar.add_cascade(label = "File", menu = file_menu)
+        file_menu.add_command(label = "Exit", command = self.destroy)
+
+            # Creation of help menu
+        helpmenu = Menu(menubar, tearoff = 0)
+        helpmenu.add_command(label = "Help Index", command = lambda:HelpAboutWarnings.helpIndex(self))
+        helpmenu.add_command(label = "About...", command = lambda:HelpAboutWarnings.about(self))
+        menubar.add_cascade(label = "Help", menu = helpmenu)
+        
+
+
+
+
+        
+class HelpAboutWarnings():
     def __init__(self):
         pass
     
@@ -231,91 +176,93 @@ Academic Year 2022.''')
 the color combination that Codemaker is hiding
 Good Luck and enjoy...''')
 
+    def errorInputWarning(self):
+        messagebox.showinfo(title = "Warning", message = "Wrong input...")
+
+        
+    def endOfTheGameOutOfTries(self):
+        messagebox.showinfo(title = "Out of guesses!", message = f'''You lost try again...
+The code was:
+{' '.join(Mastermind.color)}''')
+
+
+    def userInputWarningWrongColor(self): 
+        messagebox.showwarning(title = "Warning", message = "Wrong user's input")
+
+        
+    def endOfGameWinner(self):
+        messagebox.showinfo(title = "Winner!", message = '''You win you are
+the Codebraker''')
+
+    def endOfGamePcWinner(self):
+        messagebox.showinfo(title = "You lost!", message = "Pc is the codebreaker.")
+
+    def endOfGameUserWinner(self):
+        messagebox.showinfo(title = "Winner", message = "You are the codemaker and you won the pc!")
+
         
 
         
 #class Mastermind(tk.Tk):
 class Mastermind(tk.Toplevel):#, FirstsSettingsWindow):
-
-    #firstssettingswindow = FirstsSettingsWindow()
-    #mastermindscode = MastermindsCode()
-
+    
     #counter = 0
-    def __init__(self, users_role_in_game, number_of_colors, code_length, duplicate_colors_in_code):#passtheentryvalue):#convert_to_int()):#5):#number_of_colors = firstssettingswindow.settings_textbox.get()
-        # Creation of necessary lists
-        #print(type(number_of_colors))
+
+    def __init__(self, users_role_in_game, number_of_colors, code_length, duplicate_colors_in_code, username):
+        
         Mastermind.counter = 0
         
         self.users_role_in_game = users_role_in_game
-        print("self.users_role_in_game", self.users_role_in_game)
         self.number_of_colors = number_of_colors
         self.code_length = code_length
         self.duplicate_colors_in_code = duplicate_colors_in_code
+        self.username = username
         
         self.available_colors = ['Blue', 'Yellow', 'Orange', 'Green', 'Violet', 'Lime'][:self.number_of_colors]
         self.shorted_colors = ['b', 'y', 'o', 'g', 'v', 'l'][:self.number_of_colors]
+        self.creationOfCbanswer_list = [410, 370, 330, 290, 250, 210, 170, 130, 90, 50]
+
         Mastermind.color = []
-        Mastermind.guesses_list = []
-        Mastermind.feedback_list = []
-        Mastermind.label_answer_cb_list = []
-        Mastermind.label_feedback_list = []
-        Mastermind.user_codemaker_list = []
+
+        self.guesses_list = []
+        self.feedback_list = []
+        self.label_answer_cb_list = []
+        self.label_feedback_list = []
+        self.user_codemaker_list = []
+        self.user_cm_feedback_list = []
 
         super(Mastermind, self).__init__()
-
+        #super(self).__init__()
         
-##        # Creation of main window
-##        self.geometry("550x590")
-##        self.title('Mastermind game')
-##        self.configure(background = "PeachPuff3")
-
-
-##        # color table information
-##        self.label_info_head_upper = Label(self, text = "Color table info.", font = ("Calibri", 12),
-##                                     background = "PeachPuff3")
-##        self.label_info_head_upper.place(x = 8, y = 518)
-##        self.label_info_head_down = Label(self, text = "The available colors to choose are bellow:",
-##                                          font = ("Calibri", 12),
-##                                     background = "PeachPuff3")
-##        self.label_info_head_down.place(x = 8, y = 538)
-##
-##        if self.number_of_colors == 5:
-##            self.label_info = Label(self, text = "b = Blue,  y = Yellow,  o = Orange,  g = Green,  v = Violet",
-##                                font = ("Calibri", 12), background = "PeachPuff3")
-##            self.label_info.place(x = 8, y = 558)
-##        else:
-##            self.label_info = Label(self, text = "b = Blue,  y = Yellow,  o = Orange,  g = Green,  v = Violet, l = Lime",
-##                                font = ("Calibri", 12), background = "PeachPuff3")
-##            self.label_info.place(x = 8, y = 558)
            
-        # menubar creation
-        self.mainWindowCreationMenuBar()
+            # menubar creation
+        self.topWindowCreationMenuBar()
         
-        # codebreaker's answer labels
+            # codebreaker's answer labels
         self.creationOfCbanswernumAndLabels()
 
-        # codebreaker's answer feedback
+            # codebreaker's answer feedback
         self.creationOfCbFeedback()
 
 
 
-        # When User is Codebreaker.
+            # When User is Codebreaker.
         if self.users_role_in_game == "cb":
-            # Creation of main window
-            self.geometry("550x590")
+                # Creation of main window
+            self.geometry("550x620")
             self.title('Mastermind game')
             self.configure(background = "PeachPuff3")
 
-            # Creation of User - Codebrekaer's Guess button
-            self.guess_button = ttk.Button(self, text = "Guess", command = lambda:self.comandOfGuessButton(creationofcode = self.creationOfCode))
+                # Creation of User - Codebrekaer's Guess button
+            self.guess_button = ttk.Button(self, text = "Guess", command = lambda:self.commandOfGuessButton(creationofcode = self.creationOfCode))
 
-            # Creation of PC - Codemaker's code.
+                # Creation of PC - Codemaker's code.
             self.creationOfCode = self.creationOfCode(colors = self.available_colors, duplicate_colors_in_code
                                              = self.duplicate_colors_in_code)
             self.config(width = 8, height = 2)
             self.guess_button.place(x = 300, y = 480)
 
-            # color table information
+                # color table information
             self.label_info_head_upper = Label(self, text = "Color table info.", font = ("Calibri", 12),
                                          background = "PeachPuff3")
             self.label_info_head_upper.place(x = 8, y = 518)
@@ -333,25 +280,30 @@ class Mastermind(tk.Toplevel):#, FirstsSettingsWindow):
                                     font = ("Calibri", 12), background = "PeachPuff3")
                 self.label_info.place(x = 8, y = 558)
 
+
+            self.role_in_game_info = Label(self, text = "{} is the 'Codebreaker' and pc is the 'Codemaker'.". format(self.username),
+                                           font = ("Calibri", 12), background = "PeachPuff3", foreground='green')
+            self.role_in_game_info.place(x = 8, y = 590)
+
             
-            # Creation of textboxes
+                # Creation of textboxes
             if self.code_length == 3:
                 self.label_cb_ins_box_head = Label(self, text = "Codebreaker's input.", font = ("Calibri", 13),
                                                background = "PeachPuff3")
                 self.label_cb_ins_box_head.place(x = 30, y = 455)
-                self.textbox_1 = ttk.Entry(self)
-                self.textbox_1.place(x = 30, y = 480)
-                self.textbox_1.config(width = 5, font = ("Calibri", 12))
+                self.textbox_cb_1 = ttk.Entry(self)
+                self.textbox_cb_1.place(x = 30, y = 480)
+                self.textbox_cb_1.config(width = 5, font = ("Calibri", 12))
                 #self.textbox_1.focus()
 
-                self.textbox_2 = ttk.Entry(self)
-                self.textbox_2.place(x = 80, y = 480)
-                self.textbox_2.config(width = 5, font = ("Calibri", 12))
+                self.textbox_cb_2 = ttk.Entry(self)
+                self.textbox_cb_2.place(x = 80, y = 480)
+                self.textbox_cb_2.config(width = 5, font = ("Calibri", 12))
                 #self.textbox_2.focus()
             
-                self.textbox_3 = ttk.Entry(self)
-                self.textbox_3.place(x = 130, y = 480)
-                self.textbox_3.config(width = 5, font = ("Calibri", 12))
+                self.textbox_cb_3 = ttk.Entry(self)
+                self.textbox_cb_3.place(x = 130, y = 480)
+                self.textbox_cb_3.config(width = 5, font = ("Calibri", 12))
                 #self.textbox_3.focus()
 
 
@@ -359,39 +311,40 @@ class Mastermind(tk.Toplevel):#, FirstsSettingsWindow):
                 self.label_cb_ins_box_head = Label(self, text = "Codebreaker's input.", font = ("Calibri", 13),
                                                background = "PeachPuff3")
                 self.label_cb_ins_box_head.place(x = 30, y = 455)
-                self.textbox_1 = ttk.Entry(self)
-                self.textbox_1.place(x = 30, y = 480)
-                self.textbox_1.config(width = 5, font = ("Calibri", 12))
+                self.textbox_cb_1 = ttk.Entry(self)
+                self.textbox_cb_1.place(x = 30, y = 480)
+                self.textbox_cb_1.config(width = 5, font = ("Calibri", 12))
                 #self.textbox_1.focus()
 
-                self.textbox_2 = ttk.Entry(self)
-                self.textbox_2.place(x = 80, y = 480)
-                self.textbox_2.config(width = 5, font = ("Calibri", 12))
+                self.textbox_cb_2 = ttk.Entry(self)
+                self.textbox_cb_2.place(x = 80, y = 480)
+                self.textbox_cb_2.config(width = 5, font = ("Calibri", 12))
                 #self.textbox_2.focus()
             
-                self.textbox_3 = ttk.Entry(self)
-                self.textbox_3.place(x = 130, y = 480)
-                self.textbox_3.config(width = 5, font = ("Calibri", 12))
-                self.textbox_4 = ttk.Entry(self)
-                self.textbox_4.place(x = 180, y = 480)
-                self.textbox_4.config(width = 5, background = "SkyBlue3", font = ("Calibri", 12))
+                self.textbox_cb_3 = ttk.Entry(self)
+                self.textbox_cb_3.place(x = 130, y = 480)
+                self.textbox_cb_3.config(width = 5, font = ("Calibri", 12))
+                self.textbox_cb_4 = ttk.Entry(self)
+                self.textbox_cb_4.place(x = 180, y = 480)
+                self.textbox_cb_4.config(width = 5, background = "SkyBlue3", font = ("Calibri", 12))
 
 
 
-        # When User is Codemaker.
+            # When User is Codemaker.
         elif self.users_role_in_game == "cm":
 
-            # Creation of main window
-            self.geometry("550x700")
+                # Creation of main window
+            self.geometry("550x730")
             self.title('Mastermind game')
             self.configure(background = "PeachPuff3")
 
-            # Creation of User - Codebrekaer's Guess button
-            self.creation_code_button = ttk.Button(self, text = "Create the code", command = lambda:self.creationUsersCmCodeCommand())
+                # Creation of User - Codebrekaer's Guess button
+            self.creation_code_button = ttk.Button(self, text = "Create the code",
+                                                   command = lambda:self.creationUsersCmCodeButtonCommand())
             self.config(width = 8, height = 2)
             self.creation_code_button.place(x = 300, y = 480)
 
-            # color table information
+                # color table information
             self.label_info_head_upper = Label(self, text = "Color table info.", font = ("Calibri", 12),
                                          background = "PeachPuff3")
             self.label_info_head_upper.place(x = 8, y = 618)
@@ -399,7 +352,8 @@ class Mastermind(tk.Toplevel):#, FirstsSettingsWindow):
                                               font = ("Calibri", 12),
                                          background = "PeachPuff3")
             self.label_info_head_down.place(x = 8, y = 638)
-
+            
+            
             if self.number_of_colors == 5:
                 self.label_info = Label(self, text = "b = Blue,  y = Yellow,  o = Orange,  g = Green,  v = Violet",
                                     font = ("Calibri", 12), background = "PeachPuff3")
@@ -409,10 +363,18 @@ class Mastermind(tk.Toplevel):#, FirstsSettingsWindow):
                                     font = ("Calibri", 12), background = "PeachPuff3")
                 self.label_info.place(x = 8, y = 658)
                 
+
+            self.label_feedback_info_header = Label(self, text = "The available feedback colors are: r = Red, w = White and empty textbox.",
+                                                    font = ("Calibri", 12), background = "PeachPuff3")
+            self.label_feedback_info_header.place(x = 8, y = 590)
+
+            self.role_in_game_info = Label(self, text = "{} is the 'Codemaker' and pc is the 'Codebreaker'.". format(self.username),
+                                           font = ("Calibri", 12), background = "PeachPuff3", foreground='green')
+            self.role_in_game_info.place(x = 8, y = 690)
             
 
             if self.code_length == 3:
-                self.label_cm_ins_box_head = Label(self, text = "Codemeaker's input.", font = ("Calibri", 13),
+                self.label_cm_ins_box_head = Label(self, text = "Codemaker's input.", font = ("Calibri", 13),
                                                background = "PeachPuff3")
                 self.label_cm_ins_box_head.place(x = 30, y = 455)
                 self.textbox_cm_1 = ttk.Entry(self)
@@ -429,8 +391,24 @@ class Mastermind(tk.Toplevel):#, FirstsSettingsWindow):
                 self.textbox_cm_3.place(x = 130, y = 480)
                 self.textbox_cm_3.config(width = 5, font = ("Calibri", 12))
 
+
+                # Creation of user's feedback entry boxes
+                self.textbox_cm_feedback_1 = ttk.Entry(self)
+                self.textbox_cm_feedback_1.place(x = 30, y = 550)
+                self.textbox_cm_feedback_1.config(width = 5, font = ("Calibri", 12), state= "disabled")
+
+                self.textbox_cm_feedback_2 = ttk.Entry(self)
+                self.textbox_cm_feedback_2.place(x = 80, y = 550)
+                self.textbox_cm_feedback_2.config(width = 5, font = ("Calibri", 12), state= "disabled")
+
+                self.textbox_cm_feedback_3 = ttk.Entry(self)
+                self.textbox_cm_feedback_3.place(x = 130, y = 550)
+                self.textbox_cm_feedback_3.config(width = 5, font = ("Calibri", 12), state= "disabled")
+
+                
+
             else:
-                self.label_cm_ins_box_head = Label(self, text = "Codemeaker's input.", font = ("Calibri", 13),
+                self.label_cm_ins_box_head = Label(self, text = "Codemaker's input.", font = ("Calibri", 13),
                                                background = "PeachPuff3")
                 self.label_cm_ins_box_head.place(x = 30, y = 455)
                 self.textbox_cm_1 = ttk.Entry(self)
@@ -452,167 +430,274 @@ class Mastermind(tk.Toplevel):#, FirstsSettingsWindow):
                 #self.textbox_4.focus()
                 print("User is codemaker")
 
+                # Creation of user's feedback entry boxes
+                self.textbox_cm_feedback_1 = ttk.Entry(self)
+                self.textbox_cm_feedback_1.place(x = 30, y = 550)
+                self.textbox_cm_feedback_1.config(width = 5, font = ("Calibri", 12), state= "disabled")
 
-    def creationUsersCmCodeCommand(self):
+                self.textbox_cm_feedback_2 = ttk.Entry(self)
+                self.textbox_cm_feedback_2.place(x = 80, y = 550)
+                self.textbox_cm_feedback_2.config(width = 5, font = ("Calibri", 12), state= "disabled")
+
+                self.textbox_cm_feedback_3 = ttk.Entry(self)
+                self.textbox_cm_feedback_3.place(x = 130, y = 550)
+                self.textbox_cm_feedback_3.config(width = 5, font = ("Calibri", 12), state= "disabled")
+
+                self.textbox_cm_feedback_4 = ttk.Entry(self)
+                self.textbox_cm_feedback_4.place(x = 180, y = 550)
+                self.textbox_cm_feedback_4.config(width = 5, font = ("Calibri", 12), state= "disabled")
+
+                
+
+            self.label_cm_ins_box_header = Label(self, text = "Codemaker's feedback input boxes.", font = ("Calibri", 13),
+                                               background = "PeachPuff3")
+            self.label_cm_ins_box_header.place(x = 30, y = 525)
+
+            self.next_move_button = Button(self, text = "Give feedback", command = lambda:
+                                           self.answerAndFeedbackCbLabels(text = self.codemaker(), code = pc_codebreaker_list))
+            self.next_move_button.place(x = 300, y = 550)
+            self.next_move_button.config(width = 14, height = 1)
+            self.next_move_button['state'] = DISABLED
+        
+        
+            
+
+
+    def creationUsersCmCodeButtonCommand(self):
+        self.user_codemaker_list.clear()
         if self.code_length == 3:
-            # textbox_1 check
+                # textbox_1 check
             users_cm_input_1 = self.textbox_cm_1.get()
-            print(users_cm_input_1)
+            #print(users_cm_input_1)
             if users_cm_input_1 in self.shorted_colors:
-                if users_cm_input_1 == "b": Mastermind.user_codemaker_list.append("Blue")
-                elif users_cm_input_1 == "y": Mastermind.user_codemaker_list.append("Yellow")   
-                elif users_cm_input_1 == "o": Mastermind.user_codemaker_list.append("Orange")
-                elif users_cm_input_1 == "v": Mastermind.user_codemaker_list.append("Violet")
-                elif users_cm_input_1 == "g": Mastermind.user_codemaker_list.append("Green")
-                elif users_cm_input_1 == "l": Mastermind.user_codemaker_list.append("Lime")
+                if users_cm_input_1 == "b": self.user_codemaker_list.append("Blue")
+                elif users_cm_input_1 == "y": self.user_codemaker_list.append("Yellow")   
+                elif users_cm_input_1 == "o": self.user_codemaker_list.append("Orange")
+                elif users_cm_input_1 == "v": self.user_codemaker_list.append("Violet")
+                elif users_cm_input_1 == "g": self.user_codemaker_list.append("Green")
+                elif users_cm_input_1 == "l": self.user_codemaker_list.append("Lime")
     
-            # textbox_2 check
+                # textbox_2 check
             users_cm_input_2 = self.textbox_cm_2.get()
             if users_cm_input_2 in self.shorted_colors:
-                if users_cm_input_2 == "b": Mastermind.user_codemaker_list.append("Blue")
-                elif users_cm_input_2 == "y": Mastermind.user_codemaker_list.append("Yellow")
-                elif users_cm_input_2 == "o": Mastermind.user_codemaker_list.append("Orange")
-                elif users_cm_input_2 == "v": Mastermind.user_codemaker_list.append("Violet")
-                elif users_cm_input_2 == "g": Mastermind.user_codemaker_list.append("Green")
-                elif users_cm_input_2 == "l": Mastermind.user_codemaker_list.append("Lime")
+                if users_cm_input_2 == "b": self.user_codemaker_list.append("Blue")
+                elif users_cm_input_2 == "y": self.user_codemaker_list.append("Yellow")
+                elif users_cm_input_2 == "o": self.user_codemaker_list.append("Orange")
+                elif users_cm_input_2 == "v": self.user_codemaker_list.append("Violet")
+                elif users_cm_input_2 == "g": self.user_codemaker_list.append("Green")
+                elif users_cm_input_2 == "l": self.user_codemaker_list.append("Lime")
 
-            # textbox_3 check
+                # textbox_3 check
             users_cm_input_3 = self.textbox_cm_3.get()
             if users_cm_input_3 in self.shorted_colors:
-                if users_cm_input_3 == "b": Mastermind.user_codemaker_list.append("Blue")
-                elif users_cm_input_3 == "y": Mastermind.user_codemaker_list.append("Yellow")   
-                elif users_cm_input_3 == "o": Mastermind.user_codemaker_list.append("Orange")
-                elif users_cm_input_3 == "v": Mastermind.user_codemaker_list.append("Violet")
-                elif users_cm_input_3 == "g": Mastermind.user_codemaker_list.append("Green")
-                elif users_cm_input_3 == "l": Mastermind.user_codemaker_list.append("Lime")
+                if users_cm_input_3 == "b": self.user_codemaker_list.append("Blue")
+                elif users_cm_input_3 == "y": self.user_codemaker_list.append("Yellow")   
+                elif users_cm_input_3 == "o": self.user_codemaker_list.append("Orange")
+                elif users_cm_input_3 == "v": self.user_codemaker_list.append("Violet")
+                elif users_cm_input_3 == "g": self.user_codemaker_list.append("Green")
+                elif users_cm_input_3 == "l": self.user_codemaker_list.append("Lime")
+            
 
-            self.creation_code_button['state'] = DISABLED    
-            self.users_cm_code_label = ttk.Label(self, text = Mastermind.user_codemaker_list, font = ("Calibri", 13), width = 22,
-                                                 relief = SUNKEN, background = "cyan")
-            self.users_cm_code_label.place(x = 30, y = 480)
-            #self.users_cm_code_label.config(relief = SUNKEN, background = "cyan")
-            return Mastermind.user_codemaker_list
+            if self.validationOfInput(returnablevalue = self.user_codemaker_list) == 1:
+                self.creation_code_button.destroy()
+                self.textbox_cm_1.destroy()
+                self.textbox_cm_2.destroy()
+                self.textbox_cm_3.destroy()
+                self.users_cm_code_label = ttk.Label(self, text = self.user_codemaker_list, font = ("Calibri", 13), width = 22,
+                                                     relief = SUNKEN, background = "cyan")
+                self.users_cm_code_label.place(x = 30, y = 480)
+                self.textbox_cm_feedback_1.config(state = "enabled")
+                self.textbox_cm_feedback_2.config(state = "enabled")
+                self.textbox_cm_feedback_3.config(state = "enabled")
+                self.next_move_button['state'] = NORMAL
+                
+                self.answerAndFeedbackCbLabels(text = "", code = pc_codebreaker_list)
 
+                return self.user_codemaker_list
+
+            else:
+                HelpAboutWarnings.errorInputWarning(self)
+                
 
 
         else:
-            # textbox_cm_1 
+                # textbox_cm_1 
             users_cm_input_1 = self.textbox_cm_1.get()
             if users_cm_input_1 in self.shorted_colors:
-                if users_cm_input_1 == "b": Mastermind.user_codemaker_list.append("Blue")
-                elif users_cm_input_1 == "y": Mastermind.user_codemaker_list.append("Yellow")   
-                elif users_cm_input_1 == "o": Mastermind.user_codemaker_list.append("Orange")
-                elif users_cm_input_1 == "v": Mastermind.user_codemaker_list.append("Violet")
-                elif users_cm_input_1 == "g": Mastermind.user_codemaker_list.append("Green")
-                elif users_cm_input_1 == "l": Mastermind.user_codemaker_list.append("Lime")
+                if users_cm_input_1 == "b": self.user_codemaker_list.append("Blue")
+                elif users_cm_input_1 == "y": self.user_codemaker_list.append("Yellow")   
+                elif users_cm_input_1 == "o": self.user_codemaker_list.append("Orange")
+                elif users_cm_input_1 == "v": self.user_codemaker_list.append("Violet")
+                elif users_cm_input_1 == "g": self.user_codemaker_list.append("Green")
+                elif users_cm_input_1 == "l": self.user_codemaker_list.append("Lime")
     
-            # textbox_cm_2 
+                # textbox_cm_2 
             users_cm_input_2 = self.textbox_cm_2.get()
             if users_cm_input_2 in self.shorted_colors:
-                if users_cm_input_2 == "b": Mastermind.user_codemaker_list.append("Blue")
-                elif users_cm_input_2 == "y": Mastermind.user_codemaker_list.append("Yellow")
-                elif users_cm_input_2 == "o": Mastermind.user_codemaker_list.append("Orange")
-                elif users_cm_input_2 == "v": Mastermind.user_codemaker_list.append("Violet")
-                elif users_cm_input_2 == "g": Mastermind.user_codemaker_list.append("Green")
-                elif users_cm_input_2 == "l": Mastermind.user_codemaker_list.append("Lime")
+                if users_cm_input_2 == "b": self.user_codemaker_list.append("Blue")
+                elif users_cm_input_2 == "y": self.user_codemaker_list.append("Yellow")
+                elif users_cm_input_2 == "o": self.user_codemaker_list.append("Orange")
+                elif users_cm_input_2 == "v": self.user_codemaker_list.append("Violet")
+                elif users_cm_input_2 == "g": self.user_codemaker_list.append("Green")
+                elif users_cm_input_2 == "l": self.user_codemaker_list.append("Lime")
 
-            # textbox_cm_3 
+                # textbox_cm_3 
             users_cm_input_3 = self.textbox_cm_3.get()
             if users_cm_input_3 in self.shorted_colors:
-                if users_cm_input_3 == "b": Mastermind.user_codemaker_list.append("Blue")
-                elif users_cm_input_3 == "y": Mastermind.user_codemaker_list.append("Yellow")   
-                elif users_cm_input_3 == "o": Mastermind.user_codemaker_list.append("Orange")
-                elif users_cm_input_3 == "v": Mastermind.user_codemaker_list.append("Violet")
-                elif users_cm_input_3 == "g": Mastermind.user_codemaker_list.append("Green")
-                elif users_cm_input_3 == "l": Mastermind.user_codemaker_list.append("Lime")
-            # textbox_cm_4 
+                if users_cm_input_3 == "b": self.user_codemaker_list.append("Blue")
+                elif users_cm_input_3 == "y": self.user_codemaker_list.append("Yellow")   
+                elif users_cm_input_3 == "o": self.user_codemaker_list.append("Orange")
+                elif users_cm_input_3 == "v": self.user_codemaker_list.append("Violet")
+                elif users_cm_input_3 == "g": self.user_codemaker_list.append("Green")
+                elif users_cm_input_3 == "l": self.user_codemaker_list.append("Lime")
+                # textbox_cm_4 
             users_cm_input_4 = self.textbox_cm_4.get()
             if users_cm_input_4 in self.shorted_colors:
-                if users_cm_input_4 == "b": Mastermind.user_codemaker_list.append("Blue")
-                elif users_cm_input_4 == "y": Mastermind.user_codemaker_list.append("Yellow")   
-                elif users_cm_input_4 == "o": Mastermind.user_codemaker_list.append("Orange")
-                elif users_cm_input_4 == "v": Mastermind.user_codemaker_list.append("Violet")
-                elif users_cm_input_4 == "g": Mastermind.user_codemaker_list.append("Green")
-                elif users_cm_input_4 == "l": Mastermind.user_codemaker_list.append("Lime")
+                if users_cm_input_4 == "b": self.user_codemaker_list.append("Blue")
+                elif users_cm_input_4 == "y": self.user_codemaker_list.append("Yellow")   
+                elif users_cm_input_4 == "o": self.user_codemaker_list.append("Orange")
+                elif users_cm_input_4 == "v": self.user_codemaker_list.append("Violet")
+                elif users_cm_input_4 == "g": self.user_codemaker_list.append("Green")
+                elif users_cm_input_4 == "l": self.user_codemaker_list.append("Lime")
 
-            self.creation_code_button['state'] = DISABLED    
-            self.users_cm_code_label = ttk.Label(self, text = Mastermind.user_codemaker_list, font = ("Calibri", 13), width = 22,
-                                                 relief = SUNKEN, background = "cyan")
-            self.users_cm_code_label.place(x = 30, y = 480)
-            #self.users_cm_code_label.config(relief = SUNKEN, background = "cyan")
-            return Mastermind.user_codemaker_list #else:
+            
+
+            if self.validationOfInput(returnablevalue = self.user_codemaker_list) == 1:
+                self.creation_code_button.destroy()
+                self.textbox_cm_1.destroy()
+                self.textbox_cm_2.destroy()
+                self.textbox_cm_3.destroy()
+                self.textbox_cm_4.destroy()
+                self.users_cm_code_label = ttk.Label(self, text = self.user_codemaker_list, font = ("Calibri", 13), width = 22,
+                                                         relief = SUNKEN, background = "cyan")
+                self.users_cm_code_label.place(x = 30, y = 480)
+                self.textbox_cm_feedback_1.config(state = "enabled")
+                self.textbox_cm_feedback_2.config(state = "enabled")
+                self.textbox_cm_feedback_3.config(state = "enabled")
+                self.textbox_cm_feedback_4.config(state = "enabled")
+                self.next_move_button['state'] = NORMAL
+
+                self.answerAndFeedbackCbLabels(text = "", code = pc_codebreaker_list)
+
+                return self.user_codemaker_list
+
+            else:HelpAboutWarnings.errorInputWarning(self)
                 
+       
+    def codemaker(self):
+        self.user_cm_feedback_list.clear()
+        
+        if self.code_length == 3:
+            
+                # textbox_1 check
+            users_cm_feed_input_1 = self.textbox_cm_feedback_1.get()
+            if users_cm_feed_input_1 in ["r", "w", ""]:
+                if users_cm_feed_input_1 == "r": self.user_cm_feedback_list.append("Red")
+                elif users_cm_feed_input_1 == "w": self.user_cm_feedback_list.append("White")
+                elif users_cm_feed_input_1 == "": self.user_cm_feedback_list.append("  ")
+    
+                # textbox_2 check
+            users_cm_feed_input_2 = self.textbox_cm_feedback_2.get()
+            if users_cm_feed_input_2 in ["r", "w", ""]:
+                if users_cm_feed_input_2 == "r": self.user_cm_feedback_list.append("Red")
+                elif users_cm_feed_input_2 == "w": self.user_cm_feedback_list.append("White")
+                elif users_cm_feed_input_2 == "": self.user_cm_feedback_list.append("  ")
 
-        #self.creationOfCode()#, duplicate_colors_in_code = FirstsSettingsWindow.settings(self))
+                # textbox_3 check
+            users_cm_feed_input_3 = self.textbox_cm_feedback_3.get()
+            if users_cm_feed_input_3 in ["r", "w", ""]:
+                if users_cm_feed_input_3 == "r": self.user_cm_feedback_list.append("Red")
+                elif users_cm_feed_input_3 == "w": self.user_cm_feedback_list.append("White")
+                elif users_cm_feed_input_3 == "": self.user_cm_feedback_list.append("  ")
+
+        
+            if self.validationOfInput(returnablevalue = self.user_cm_feedback_list) == 1:
+                return self.user_cm_feedback_list
+            else:
+                HelpAboutWarnings.errorInputWarning(self)
+
+
+        else:
+                # textbox_1 check
+            users_cm_feed_input_1 = self.textbox_cm_feedback_1.get()
+            if users_cm_feed_input_1 in ["r", "w", ""]:
+                if users_cm_feed_input_1 == "r": self.user_cm_feedback_list.append("Red")
+                elif users_cm_feed_input_1 == "w": self.user_cm_feedback_list.append("White")
+                elif users_cm_feed_input_1 == "": self.user_cm_feedback_list.append("  ")
+    
+                # textbox_2 check
+            users_cm_feed_input_2 = self.textbox_cm_feedback_2.get()
+            if users_cm_feed_input_2 in ["r", "w", ""]:
+                if users_cm_feed_input_2 == "r": self.user_cm_feedback_list.append("Red")
+                elif users_cm_feed_input_2 == "w": self.user_cm_feedback_list.append("White")
+                elif users_cm_feed_input_2 == "": self.user_cm_feedback_list.append("  ")
+
+                # textbox_3 check
+            users_cm_feed_input_3 = self.textbox_cm_feedback_3.get()
+            if users_cm_feed_input_3 in ["r", "w", ""]:
+                if users_cm_feed_input_3 == "r": self.user_cm_feedback_list.append("Red")
+                elif users_cm_feed_input_3 == "w": self.user_cm_feedback_list.append("White")
+                elif users_cm_feed_input_3 == "": self.user_cm_feedback_list.append("  ")
+
+                # textbox_4 check
+            users_cm_feed_input_4 = self.textbox_cm_feedback_4.get()
+            if users_cm_feed_input_4 in ["r", "w", ""]:
+                if users_cm_feed_input_4 == "r": self.user_cm_feedback_list.append("Red")
+                elif users_cm_feed_input_4 == "w": self.user_cm_feedback_list.append("White")
+                elif users_cm_feed_input_4 == "": self.user_cm_feedback_list.append("  ")
+
+
+            print("self.user_cm_feedback_list :", self.user_cm_feedback_list)
+
+
+            if self.validationOfInput(returnablevalue = self.user_cm_feedback_list) == 1:
+                return self.user_cm_feedback_list
+            else:
+                HelpAboutWarnings.errorInputWarning(self)
+            
+
 
     def newGameMenuButton(self):
         self.destroy()
-        Mastermind(self.users_role_in_game, self.number_of_colors, self.code_length, self.duplicate_colors_in_code)
+        Mastermind(self.users_role_in_game, self.number_of_colors, self.code_length, self.duplicate_colors_in_code, self.username)
         
-    def comandOfGuessButton(self, creationofcode):
-        #self.guess_button = ttk.Button(self, text = "Guess", command = lambda:e)
-        #a = self.creationOfCode(colors = available_colors, duplicate_colors_in_code
-        #                                                                = duplicate_colors_in_code)
-        #while True:
-        #creationofcode = self.creationOfCode(colors = self.available_colors, duplicate_colors_in_code
-                                                                       # = duplicate_colors_in_code)
-        #creationofcode = self.creationOfCode(colors = self.available_colors, duplicate_colors_in_code
-                                                                        #= duplicate_colors_in_code)
-            
-            #b = self.codeBreaker()
-            #c = self.codeBreaker()
-        codebreaker = self.codeBreaker()
-            #self.validationOfGuess()
-        if self.validationOfCbGuess(guesscbreturnablevalue = codebreaker) == 1:
-            
-        
-                #d = self.printingcode(copiedguess = codebreaker, copiedlist = creationofcode)
-            printingcode = self.printingcode(copiedguess = codebreaker, copiedlist = creationofcode)
 
-        
-                #e = self.answerAndFeedbackCbLabels(text = d,code = codebreaker)
+    def commandOfGuessButton(self, creationofcode):
+        codebreaker = self.codeBreaker()
+            
+        if self.validationOfInput(returnablevalue = codebreaker) == 1:
+            printingcode = self.printingcode(copiedguess = codebreaker, copiedlist = creationofcode)
             answerandfeedbackcblabels = self.answerAndFeedbackCbLabels(text = printingcode,
                                                                            code = codebreaker)
-        else:self.errorInputWarning()
+        else:
+            HelpAboutWarnings.errorInputWarning(self)
+
+
+        
+    def validationOfInput(self, returnablevalue):        
+        returnablevalue = list(returnablevalue)
+        if len(returnablevalue) != self.code_length:
+            return 2 # It means False
+        elif len(returnablevalue) == self.code_length:
+            return 1 # It means True
 
 
 
-    def validationOfCbGuess(self, guesscbreturnablevalue):        
-        guesscbreturnablevalue = list(Mastermind.guesses_list)
-        if len(guesscbreturnablevalue) != self.code_length:
-            return 2 # It means True
-        elif len(guesscbreturnablevalue) == self.code_length:
-            return 1 # It means False
-        #else: return 1 # It means False
 
-
-
-
-#######################################################################################################################
     def creationOfCode(self, colors, duplicate_colors_in_code):
-        #available_colors_tuple = tuple(colors)
         available_colors_list = list(colors)
         print("available_colors_list", available_colors_list)
         if len(Mastermind.color) == self.code_length:
-            #print("1", Mastermind.color)
             return Mastermind.color
 
-        #if duplicate_colors_in_code is False:
         if duplicate_colors_in_code == "False":
-            #if len(MastermindsCode.color) == code_length:
-                #return MastermindsCode.color
-            #else:t
             Mastermind.color = random.sample(available_colors_list, k = self.code_length)
-            print("without duplicate colors :", Mastermind.color)
             return Mastermind.color
+        
         elif duplicate_colors_in_code == "True":
-        #elif duplicate_colors_in_code is True:
             Mastermind.color = random.choices(available_colors_list, k = self.code_length)
             print("with duplicate colors :", Mastermind.color)
             return Mastermind.color
-
-
-
 
        
     def creationOfCbanswernumAndLabels(self):
@@ -620,287 +705,210 @@ class Mastermind(tk.Toplevel):#, FirstsSettingsWindow):
                                    background = "PeachPuff3")
         self.label_head_cb.place(x = 8, y = 10)
         for _ in range(10):
-            #self.label_cb = Label(self, text = str(_ + 1) + "  ----")
             self.label_cb = Label(self, text = str(_ + 1), font = ("Calibri", 12), background = "PeachPuff3")
-            self.label_cb.place(x = 8, y = creationOfCbanswer_list[_])
-            Mastermind.label_feedback_list.append(Label(self, background = "NavajoWhite2",
+            self.label_cb.place(x = 8, y = self.creationOfCbanswer_list[_])
+            self.label_feedback_list.append(Label(self, background = "NavajoWhite2",
                                                         font = ("Calibri", 12), width = 24))
-            Mastermind.label_feedback_list[_].place(x = 320, y = creationOfCbanswer_list[_])
+            self.label_feedback_list[_].place(x = 320, y = self.creationOfCbanswer_list[_])
 
-            Mastermind.label_answer_cb_list.append(Label(self, background = "light grey",
+            self.label_answer_cb_list.append(Label(self, background = "light grey",
                                                          font = ("Calibri", 12), width = 24))
-            Mastermind.label_answer_cb_list[_].place(x = 30, y = creationOfCbanswer_list[_])
-        #Mastermind.label_answer_cb_list[0].config(background = "light blue")
-        Mastermind.label_answer_cb_list[0].config(relief = SUNKEN, background = "LightSteelBlue3")
+            self.label_answer_cb_list[_].place(x = 30, y = self.creationOfCbanswer_list[_])
+
+        if self.users_role_in_game == "cb":
+            self.label_feedback_list[Mastermind.counter].config(relief = SUNKEN)  
+            self.label_answer_cb_list[0].config(relief = SUNKEN, background = "LightSteelBlue3")
+            
+        elif self.users_role_in_game == "cm":
+            self.label_answer_cb_list[0].config(relief = SUNKEN, background = "LightSteelBlue3")            
 
 
 
     def answerAndFeedbackCbLabels(self, text, code):
-
-        if Mastermind.counter < 10:
-            text = list(Mastermind.feedback_list)
-            code = list(Mastermind.guesses_list)
-            #print("text", text)
-            #print("code", code)
-
+        text = list(text)
             
-            Mastermind.label_answer_cb_list[Mastermind.counter].config(background = "LightSteelBlue3")
-            Mastermind.label_answer_cb_list[Mastermind.counter].config(text = code)
-            Mastermind.label_answer_cb_list[Mastermind.counter].place(x = 30,
-                                                                      y = creationOfCbanswer_list[Mastermind.counter])
+        code = list(code)
+        
+        self.label_answer_cb_list[Mastermind.counter].config(background = "LightSteelBlue3")
+        self.label_answer_cb_list[Mastermind.counter].config(text = " ".join(code))
+        self.label_answer_cb_list[Mastermind.counter].place(x = 30,
+                                                                      y = self.creationOfCbanswer_list[Mastermind.counter])
+        if self.users_role_in_game == "cm":
+            if Mastermind.counter >= 1:
+                    
+                print("counter :", Mastermind.counter)
+                self.label_feedback_list[Mastermind.counter - 1].config(text = " ".join(text))
+                self.label_feedback_list[Mastermind.counter - 1].place(x = 320,
+                                                                    y = self.creationOfCbanswer_list[Mastermind.counter - 1])
+                #self.label_feedback_list[Mastermind.counter].config(relief = SUNKEN)
+                    
+        elif self.users_role_in_game == "cb":
+            self.label_feedback_list[Mastermind.counter].config(text = " ".join(text))
+            self.label_feedback_list[Mastermind.counter].place(x = 320,
+                                                                    y = self.creationOfCbanswer_list[Mastermind.counter])
+            #self.label_feedback_list[Mastermind.counter].config(relief = SUNKEN)
 
-            Mastermind.label_feedback_list[Mastermind.counter].config(text = text)
-            Mastermind.label_feedback_list[Mastermind.counter].place(x = 320,
-                                                                     y = creationOfCbanswer_list[Mastermind.counter])
+        Mastermind.counter += 1
+        print("Mastermind.counter", Mastermind.counter)
+        if Mastermind.counter < 10:
+            self.label_answer_cb_list[Mastermind.counter].config(relief = SUNKEN,
+                                                                        background = "LightSteelBlue3")
+                
+        if self.users_role_in_game == "cm":
+            if self.user_cm_feedback_list.count("Red") == self.code_length:
+                self.next_move_button['state'] = DISABLED
+                HelpAboutWarnings.endOfGamePcWinner(self)
 
-            Mastermind.counter += 1
-            if Mastermind.counter < 10:
-                #Mastermind.label_answer_cb_list[Mastermind.counter].config(background = "light blue")
-                Mastermind.label_answer_cb_list[Mastermind.counter].config(relief = SUNKEN,
-                                                                           background = "LightSteelBlue3")
-                
-            if Mastermind.counter == 10:
+        else:
+            if self.feedback_list.count("Red") == self.code_length:
                 self.guess_button['state'] = DISABLED
-                Mastermind.endOfTheGameOutOfGuesses(self)
+                HelpAboutWarnings.endOfGameWinner(self)
+
                 
-            elif Mastermind.feedback_list.count("Red") == self.code_length:
+        if Mastermind.counter == 10:       
+            if self.users_role_in_game == "cb":
                 self.guess_button['state'] = DISABLED
-                Mastermind.endOfGameWinner(self)
-#######################################
-        #elif Mastermind.counter == 9:
-            #Mastermind.endOfTheGame(self)
-        #else: print("End of the game")
+                HelpAboutWarnings.endOfTheGameOutOfTries(self)
+
+            else:
+                self.next_move_button['state'] = DISABLED
+                HelpAboutWarnings.endOfGameUserWinner(self)
+              
+
         
     def creationOfCbFeedback(self):
         self.label_feedback_head = Label(self, text = "Codebreaker's feedback.", font = ("Calibri", 13),
                                          background = "PeachPuff3")
         self.label_feedback_head.place(x = 300, y = 10)
         for __ in range(10):
-            #self.label_feedback = Label(self, text = "feedback " + str(__ + 1))
             self.label_feedback = Label(self, text = str(__ + 1), font = ("Calibri", 12), background = "PeachPuff3")
-            self.label_feedback.place(x = 300, y = creationOfCbanswer_list[__])
-        #self.label_2 = Label(self, text = "2")
-        #self.label_2.place(x = 20, y = 300)
-            #self.label.grid(column = 0, row = 0)
+            self.label_feedback.place(x = 300, y = self.creationOfCbanswer_list[__])
+        
             
-    def mainWindowCreationMenuBar(self):
+            
+    def topWindowCreationMenuBar(self):
         menubar = Menu(self)
         self.config(menu = menubar)
         file_menu = Menu(menubar, tearoff = 0)
 
-        # Creation of file menu
+            # Creation of file menu
         menubar.add_cascade(label = "File", menu = file_menu)
         file_menu.add_command(label = "New", command = self.newGameMenuButton)
         file_menu.add_separator()
         file_menu.add_command(label = "Exit", command = self.destroy)
 
-        # Creation of help menu
+            # Creation of help menu
         helpmenu = Menu(menubar, tearoff = 0)
-        helpmenu.add_command(label = "Help Index", command = lambda:HelpAndAbout.helpIndex(self))
-        helpmenu.add_command(label = "About...", command = lambda:HelpAndAbout.about(self))
+        helpmenu.add_command(label = "Help Index", command = lambda:HelpAboutWarnings.helpIndex(self))
+        helpmenu.add_command(label = "About...", command = lambda:HelpAboutWarnings.about(self))
         menubar.add_cascade(label = "Help", menu = helpmenu)
 
-    #def inputList(self):
-        #users_input_1 = (self.textbox_1.get()).split("-")
-        #return users_input_1
+    
 
     def codeBreaker(self):
-        Mastermind.guesses_list.clear()
-        #self.guesses_list = []
-        #self.guesses_list.clear() # Clears the list
-        
+        self.guesses_list.clear()        
         
         if self.code_length == 3:
             
-            # textbox_1 check
-            users_input_1 = self.textbox_1.get()
+                # textbox_1 check
+            users_input_1 = self.textbox_cb_1.get()
             if users_input_1 in self.shorted_colors:
-                if users_input_1 == "b": Mastermind.guesses_list.append("Blue")
-                elif users_input_1 == "y": Mastermind.guesses_list.append("Yellow")   
-                elif users_input_1 == "o": Mastermind.guesses_list.append("Orange")
-                elif users_input_1 == "v": Mastermind.guesses_list.append("Violet")
-                elif users_input_1 == "g": Mastermind.guesses_list.append("Green")
-                elif users_input_1 == "l": Mastermind.guesses_list.append("Lime")
+                if users_input_1 == "b": self.guesses_list.append("Blue")
+                elif users_input_1 == "y": self.guesses_list.append("Yellow")   
+                elif users_input_1 == "o": self.guesses_list.append("Orange")
+                elif users_input_1 == "v": self.guesses_list.append("Violet")
+                elif users_input_1 == "g": self.guesses_list.append("Green")
+                elif users_input_1 == "l": self.guesses_list.append("Lime")
     
-            # textbox_2 check
-            users_input_2 = self.textbox_2.get()
+                # textbox_2 check
+            users_input_2 = self.textbox_cb_2.get()
             if users_input_2 in self.shorted_colors:
-                if users_input_2 == "b": Mastermind.guesses_list.append("Blue")
-                elif users_input_2 == "y": Mastermind.guesses_list.append("Yellow")
-                elif users_input_2 == "o": Mastermind.guesses_list.append("Orange")
-                elif users_input_2 == "v": Mastermind.guesses_list.append("Violet")
-                elif users_input_2 == "g": Mastermind.guesses_list.append("Green")
-                elif users_input_2 == "l": Mastermind.guesses_list.append("Lime")
+                if users_input_2 == "b": self.guesses_list.append("Blue")
+                elif users_input_2 == "y": self.guesses_list.append("Yellow")
+                elif users_input_2 == "o": self.guesses_list.append("Orange")
+                elif users_input_2 == "v": self.guesses_list.append("Violet")
+                elif users_input_2 == "g": self.guesses_list.append("Green")
+                elif users_input_2 == "l": self.guesses_list.append("Lime")
 
-            # textbox_3 check
-            users_input_3 = self.textbox_3.get()
+                # textbox_3 check
+            users_input_3 = self.textbox_cb_3.get()
             if users_input_3 in self.shorted_colors:
-                if users_input_3 == "b": Mastermind.guesses_list.append("Blue")
-                elif users_input_3 == "y": Mastermind.guesses_list.append("Yellow")   
-                elif users_input_3 == "o": Mastermind.guesses_list.append("Orange")
-                elif users_input_3 == "v": Mastermind.guesses_list.append("Violet")
-                elif users_input_3 == "g": Mastermind.guesses_list.append("Green")
-                elif users_input_3 == "l": Mastermind.guesses_list.append("Lime")
-            return Mastermind.guesses_list
+                if users_input_3 == "b": self.guesses_list.append("Blue")
+                elif users_input_3 == "y": self.guesses_list.append("Yellow")   
+                elif users_input_3 == "o": self.guesses_list.append("Orange")
+                elif users_input_3 == "v": self.guesses_list.append("Violet")
+                elif users_input_3 == "g": self.guesses_list.append("Green")
+                elif users_input_3 == "l": self.guesses_list.append("Lime")
+            return self.guesses_list
 
 
 
         else:
-            # textbox_1 check
-            users_input_1 = self.textbox_1.get()
+                # textbox_1 check
+            users_input_1 = self.textbox_cb_1.get()
             if users_input_1 in self.shorted_colors:
-                if users_input_1 == "b": Mastermind.guesses_list.append("Blue")
-                elif users_input_1 == "y": Mastermind.guesses_list.append("Yellow")   
-                elif users_input_1 == "o": Mastermind.guesses_list.append("Orange")
-                elif users_input_1 == "v": Mastermind.guesses_list.append("Violet")
-                elif users_input_1 == "g": Mastermind.guesses_list.append("Green")
-                elif users_input_1 == "l": Mastermind.guesses_list.append("Lime")
+                if users_input_1 == "b": self.guesses_list.append("Blue")
+                elif users_input_1 == "y": self.guesses_list.append("Yellow")   
+                elif users_input_1 == "o": self.guesses_list.append("Orange")
+                elif users_input_1 == "v": self.guesses_list.append("Violet")
+                elif users_input_1 == "g": self.guesses_list.append("Green")
+                elif users_input_1 == "l": self.guesses_list.append("Lime")
     
-            # textbox_2 check
-            users_input_2 = self.textbox_2.get()
+                # textbox_2 check
+            users_input_2 = self.textbox_cb_2.get()
             if users_input_2 in self.shorted_colors:
-                if users_input_2 == "b": Mastermind.guesses_list.append("Blue")
-                elif users_input_2 == "y": Mastermind.guesses_list.append("Yellow")
-                elif users_input_2 == "o": Mastermind.guesses_list.append("Orange")
-                elif users_input_2 == "v": Mastermind.guesses_list.append("Violet")
-                elif users_input_2 == "g": Mastermind.guesses_list.append("Green")
-                elif users_input_2 == "l": Mastermind.guesses_list.append("Lime")
+                if users_input_2 == "b": self.guesses_list.append("Blue")
+                elif users_input_2 == "y": self.guesses_list.append("Yellow")
+                elif users_input_2 == "o": self.guesses_list.append("Orange")
+                elif users_input_2 == "v": self.guesses_list.append("Violet")
+                elif users_input_2 == "g": self.guesses_list.append("Green")
+                elif users_input_2 == "l": self.guesses_list.append("Lime")
 
-            # textbox_3 check
-            users_input_3 = self.textbox_3.get()
+                # textbox_3 check
+            users_input_3 = self.textbox_cb_3.get()
             if users_input_3 in self.shorted_colors:
-                if users_input_3 == "b": Mastermind.guesses_list.append("Blue")
-                elif users_input_3 == "y": Mastermind.guesses_list.append("Yellow")   
-                elif users_input_3 == "o": Mastermind.guesses_list.append("Orange")
-                elif users_input_3 == "v": Mastermind.guesses_list.append("Violet")
-                elif users_input_3 == "g": Mastermind.guesses_list.append("Green")
-                elif users_input_3 == "l": Mastermind.guesses_list.append("Lime")
-            # textbox_4 check
-            users_input_4 = self.textbox_4.get()
+                if users_input_3 == "b": self.guesses_list.append("Blue")
+                elif users_input_3 == "y": self.guesses_list.append("Yellow")   
+                elif users_input_3 == "o": self.guesses_list.append("Orange")
+                elif users_input_3 == "v": self.guesses_list.append("Violet")
+                elif users_input_3 == "g": self.guesses_list.append("Green")
+                elif users_input_3 == "l": self.guesses_list.append("Lime")
+                # textbox_4 check
+            users_input_4 = self.textbox_cb_4.get()
             if users_input_4 in self.shorted_colors:
-                if users_input_4 == "b": Mastermind.guesses_list.append("Blue")
-                elif users_input_4 == "y": Mastermind.guesses_list.append("Yellow")   
-                elif users_input_4 == "o": Mastermind.guesses_list.append("Orange")
-                elif users_input_4 == "v": Mastermind.guesses_list.append("Violet")
-                elif users_input_4 == "g": Mastermind.guesses_list.append("Green")
-                elif users_input_4 == "l": Mastermind.guesses_list.append("Lime")  
-            return Mastermind.guesses_list #else:
+                if users_input_4 == "b": self.guesses_list.append("Blue")
+                elif users_input_4 == "y": self.guesses_list.append("Yellow")   
+                elif users_input_4 == "o": self.guesses_list.append("Orange")
+                elif users_input_4 == "v": self.guesses_list.append("Violet")
+                elif users_input_4 == "g": self.guesses_list.append("Green")
+                elif users_input_4 == "l": self.guesses_list.append("Lime")  
+            return self.guesses_list 
 
         
 
     def printingcode(self, copiedguess, copiedlist):
-        #guess = copiedguess
-        #if guess == "Wrong":
-            #print("Wrong")
-
-        #else:
-        Mastermind.feedback_list.clear()
+        
+        self.feedback_list.clear()
         guess = list(copiedguess)
-        #print("guess :", guess)
         code = list(copiedlist)
-        #print("code :", code)
-        #print("--" * 10)
-        #print("\noriginal_guess_list :", guess)
 
-        #if "x" in guess:
-            #return None
-        #else:
         for num in range(len(guess)):
-        #for num in code_length:
-            #print("num :", num)
-            #print("len(guess) :", len(guess))
             if guess[num] == code[num]:
-                #print("yes guess == code")
                 guess[num] = 1
                 code[num] = 2
-                Mastermind.feedback_list.append("Red")
-
+                self.feedback_list.append("Red")
 
         for num in range(len(guess)):
             if guess[num] in code:
-                Mastermind.feedback_list.append("White")
-            #else:
-                
-                #Mastermind.feedback_list.append("White")
-                #for col in guess:
-                    #print(col)
-        #code_list = code
-        #print("\nMastermind.feedback_list :", Mastermind.feedback_list)
-        #print("\nfinal_guess_list :", guess)
-        #print("\ncode_list :", code)
-        return Mastermind.feedback_list
-        
-        #for num in range(counter):
-            
-            #counter += 1
-        #else: print("Wrong.")
-        
-        
-    #def codeBreakersAnswerLabels(self, listtocopy):
-        #Mastermind.counter =+ 1
-        #guess = list(listtocopy)
-        #self.label = Label(self, text = self.guess[0])
-        #self.config(font = ("Calibri", 13))
-        #self.place(x = 20, y = 100)
-        
-        #pass
+                self.feedback_list.append("White")
 
-    #def guessesPrint(self, guessesForPrint):
-        #guess = list(guessesForPrint)
-        #print(guessesForPrint)
-        #self.label = Label(self, text = guessesForPrint)
-        #self.label.config(font = ("Calibri", 13))
-        #self.label.place(x = 0, y = 0)
-        #pass
-
-    #def codeprinting(self, x):
-        #a = list(x)
-        #print(x)
-        #pass
+        return self.feedback_list
         
-    #def codemakersFeedback(self, guessesCopy):
-        #pass
-        
-    def errorInputWarning(self):
-        messagebox.showinfo(title = "Warning", message = "Wrong input...")
-        
-    def endOfTheGameOutOfGuesses(self):
-        messagebox.showinfo(title = "Out of guesses!", message = "You lost try again...")
-        Mastermind.destroy
-
-    def userInputWarningWrongColor(self): 
-        messagebox.showinfo(title = "Warning", message = "Wrong user's input")
-        
-    def endOfGameWinner(self):
-        messagebox.showinfo(title = "Winner!", message = '''You win you are
-the Codebraker''')
-        
-##    def about(self):
-##        messagebox.showinfo(title = "About", message = '''Mastermind game.
-##A creation of Mavrogiannis Michail
-##and Panourgias Panagiotis
-##for Open Hellenic Univercity
-##and PLHPRO lesson,
-##Academic Year 2022.''')
-##
-##    def helpIndex(self):
-##        messagebox.showinfo("Help Index", '''Press color buttons to fill empty boxes and guess
-##the color combination that Codemaker is hiding
-##Good Luck and enjoy...''')
     
         
 if __name__ == "__main__":
 
-    FirstsSettingsWindow.mainloop()
-    #FirstsSettingsWindow().mainloop()
-    
-    #print(Mastermind.color)
-    #firstsetwin = FirstsSettingsWindow()
-    #firstsetwin.mainloop()
-    #print(MastermindsCode.color)
-    #Mastermind().mainloop()
+    FirstsSettingsWindow().mainloop()
 
-    #mainmenu()
-    #MainControler()
-    #Mastermind().mainloop()
-    #Mastermind().mainloop()
+
+    
